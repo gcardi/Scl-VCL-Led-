@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8063C092-D31B-47AB-BCAE-20F0D8906328}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ScalableLedRun.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ScalableLedDsgn.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ScalableLedRun">
+        <MSBuild Projects="ScalableLedRun.cbproj"/>
+    </Target>
+    <Target Name="ScalableLedRun:Clean">
+        <MSBuild Projects="ScalableLedRun.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ScalableLedRun:Make">
+        <MSBuild Projects="ScalableLedRun.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ScalableLedDsgn">
+        <MSBuild Projects="ScalableLedDsgn.cbproj"/>
+    </Target>
+    <Target Name="ScalableLedDsgn:Clean">
+        <MSBuild Projects="ScalableLedDsgn.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ScalableLedDsgn:Make">
+        <MSBuild Projects="ScalableLedDsgn.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ScalableLedRun;ScalableLedDsgn"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ScalableLedRun:Clean;ScalableLedDsgn:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ScalableLedRun:Make;ScalableLedDsgn:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
